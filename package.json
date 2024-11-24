@@ -1,0 +1,22 @@
+{
+  "name": "express-rpg-charsheet-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start:dev": "nodemon"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "express": "^4.21.1",
+    "prisma": "^5.22.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "nodemon": "^3.1.7",
+    "tsx": "^4.19.2",
+    "typescript": "^5.5.3"
+  },
+  "private": true
+}
