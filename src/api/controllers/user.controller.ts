@@ -13,8 +13,9 @@ export class UserController {
     }
 
     async create (req: Request, res: Response) {
-        const body = req.body;
-        await this.userRepository.create(req.body);
-        return res.json({body}).status(200);
+        try {
+            await this.userRepository.create(req.body);
+            return res.json({data: req.body}).status(200);
+        } catch (e) {throw e}
     }
 }

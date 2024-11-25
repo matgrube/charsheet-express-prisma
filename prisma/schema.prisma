@@ -18,4 +18,28 @@ model User {
   name String
   email String
   password String
+  ownedCampaigns Campaign[]
+  playerInCampaings PlayerCampaign[]
+
+  @@unique([email, name])
+  @@index([email, name])
+}
+
+model Campaign {
+  id Int @id @default(autoincrement())
+  name String
+  description String
+  owner User  @relation(fields: [ownerId], references: [id])
+  ownerId Int
+  players PlayerCampaign[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model PlayerCampaign {
+  id Int @id @default(autoincrement())
+  player User @relation(fields: [playerId], references: [id])
+  playerId Int
+  campaign Campaign @relation(fields: [campaignId], references: [id])
+  campaignId Int
 }
