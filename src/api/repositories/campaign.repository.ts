@@ -21,7 +21,11 @@ export class CampaignRepository extends Repository {
             return await this.prismaClient.campaign.findMany({
                 include: {
                     owner: true,
-                    players: true
+                    players: {
+                        select: {
+                            player: true,
+                        }
+                    }
                 }
             });
         } catch (e) {

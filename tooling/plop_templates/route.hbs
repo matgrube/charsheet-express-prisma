@@ -1,0 +1,16 @@
+import { Request, Response, Router } from 'express';
+import { {{upperCase name}}Controller } from '../controllers/{{name}}.controller';
+
+const route = Router();
+const {{name}}Controller = new {{upperCase name}}Controller();
+
+export default (app: Router) => {
+    app.use('/{{name}}', route);
+    route.get('/getAll', async (req: Request, res: Response) => {
+        await {{name}}Controller.getAll(req, res);
+    });
+
+    route.post('/create', async (req: Request, res: Response) => {
+        await {{name}}Controller.create(req, res);
+    })
+}

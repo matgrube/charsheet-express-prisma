@@ -1,0 +1,23 @@
+import { {{upperCase name}}Repository } from '../repositories/{{name}}.repository';
+import { Request, Response } from 'express';
+import { {{upperCase name}} } from '@prisma/client';
+
+export class {{upperCase name}}Controller {
+    {{name}}Repository = new {{upperCase name}}Repository();
+    constructor() {};
+
+    async getAll(req: Request, res: Response) {
+        try {
+            const result = await this.{{name}}Repository.getAll();
+            return res.json(result).status(200);
+        } catch (error) {throw error}
+    }
+
+    async create (req: Request, res: Response) {
+        try {
+            const body = req.body;
+            await this.{{name}}Repository.create(req.body);
+            return res.json({body}).status(200);
+        } catch (e) {throw e}
+    };
+}

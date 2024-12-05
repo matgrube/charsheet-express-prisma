@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
+  "type": "module",
   "scripts": {
     "build": "tsc",
-    "start:dev": "nodemon"
+    "start:dev": "nodemon",
+    "plop": "plop"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",
@@ -15,6 +17,7 @@
   "devDependencies": {
     "@types/express": "^5.0.0",
     "nodemon": "^3.1.7",
+    "plop": "^4.0.1",
     "tsx": "^4.19.2",
     "typescript": "^5.5.3"
   },

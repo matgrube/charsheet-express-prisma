@@ -1,0 +1,28 @@
+import { Repository } from '../../cores/Repository';
+import { {{upperCase name}} } from '@prisma/client';
+
+export class {{upperCase name}}Repository extends Repository {
+    constructor() {
+        super();
+    };
+
+    async create({{name}} : {{upperCase name}}): Promise<{{upperCase name}}> {
+        try {
+            return await this.prismaClient.{{name}}.create({ data: {{name}} })
+        } catch (e) {
+            throw e;
+        } finally {
+            await this.prismaClient.$disconnect()
+        }
+    };
+
+    async getAll(): Promise<{{upperCase name}}[]> {
+        try {
+            return await this.prismaClient.{{name}}.findMany()
+        } catch (e) {
+            throw e;
+        } finally {
+            await this.prismaClient.$disconnect();
+        }
+    }
+}

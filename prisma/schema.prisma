@@ -20,6 +20,7 @@ model User {
   password String
   ownedCampaigns Campaign[]
   playerInCampaings PlayerCampaign[]
+  characters Character[]
 
   @@unique([email, name])
   @@index([email, name])
@@ -42,4 +43,15 @@ model PlayerCampaign {
   playerId Int
   campaign Campaign @relation(fields: [campaignId], references: [id])
   campaignId Int
+}
+
+model Character {
+  id Int @id @default(autoincrement())
+  player User @relation(fields: [playerId], references: [id])
+  playerId Int
+  name String
+  race String
+  class String
+  currentHp Int
+  maxHp Int
 }
