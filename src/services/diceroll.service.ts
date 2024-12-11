@@ -19,9 +19,7 @@ export class DicerollService {
 
     public async run(diceTypes: number[]) {
         try {
-            const result = await this.runDiceroll(diceTypes);
-            console.log(result);
-            return result;
+            return await this.runDiceroll(diceTypes);
         } catch (e) {
             throw e;
         }
