@@ -4,9 +4,9 @@ export class DicerollService {
     constructor() {};
 
     // workerThreads are a huge overkill, it's for educational purposes
-    private runDiceroll(workerData: {diceType: 'd4' | 'd6' | 'd20'}) {
+    private runDiceroll(workerData: number[]) {
         return new Promise((resolve, reject) => {
-            const worker = new Worker('./diceroll.worker.ts', { workerData });
+            const worker = new Worker('./src/services/diceroll.worker.js', { workerData });
             worker.on('message', resolve);
             worker.on('error', reject);
             worker.on('exit', (code) => {
@@ -17,9 +17,9 @@ export class DicerollService {
         })
     };
 
-    public async run(diceType: 'd4' | 'd6' | 'd20') {
+    public async run(diceTypes: number[]) {
         try {
-            const result = await this.runDiceroll({diceType});
+            const result = await this.runDiceroll(diceTypes);
             console.log(result);
             return result;
         } catch (e) {

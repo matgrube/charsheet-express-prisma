@@ -1,14 +1,13 @@
 import { Request, Response, Router } from "express";
-import { DicerollService } from "../../services/diceroll.service";
+import { GameplayController } from "../controllers/gameplay.controller";
 
 const route = Router();
-const dicerollService = new DicerollService();
+const gamePlayController = new GameplayController();
 
 export default (app:  Router) => {
     app.use('/gameplay', route);
 
     route.get('/diceroll', async(req, res) => {
-        dicerollService.run('d4');
-        res.json([]).status(200);
+        await gamePlayController.rollDice(req, res);
     })
 }
