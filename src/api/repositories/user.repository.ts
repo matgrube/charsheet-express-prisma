@@ -1,5 +1,5 @@
-import {Repository} from "../../cores/Repository";
-import {User} from "@prisma/client";
+import { Repository } from "../../cores/Repository";
+import { User } from "@prisma/client";
 
 export class UserRepository extends Repository {
     constructor() {
@@ -8,7 +8,7 @@ export class UserRepository extends Repository {
 
     async create(user: User): Promise<User> {
         try {
-            return await this.prismaClient.user.create({data: user})
+            return await this.prismaClient.user.create({ data: user })
         } catch (e) {
             throw e;
         } finally {
@@ -19,6 +19,20 @@ export class UserRepository extends Repository {
     async getAll(): Promise<User[]> {
         try {
             return await this.prismaClient.user.findMany();
+        } catch (e) {
+            throw e;
+        } finally {
+            await this.prismaClient.$disconnect()
+        }
+    }
+
+    async login(email: string): Promise<User | null> {
+        try {
+            return await this.prismaClient.user.findFirst({
+                where: {
+                    email: email,
+                }
+            });
         } catch (e) {
             throw e;
         } finally {
