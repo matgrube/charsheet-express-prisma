@@ -8,4 +8,9 @@ yarn-error.log*
 /.pnp
 .pnp.js
 
+# secrets
+.env
+
+# Editor directories and files
 .vscode/*
+.idea/*
