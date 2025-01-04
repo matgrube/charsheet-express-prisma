@@ -1,6 +1,6 @@
 import { parentPort, workerData } from 'worker_threads';
 
-function processData(data) {
+function processData(data: number[]) {
     const result = data.map((item) => ({
         type: `d${item}`,
         result: Math.floor((Math.random() * item) + 1)

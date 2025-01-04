@@ -1,12 +1,12 @@
 import { Worker } from 'worker_threads';
 
 export class DicerollService {
-    constructor() {};
+    constructor() { };
 
     // workerThreads are a huge overkill, it's for educational purposes
     private runDiceroll(workerData: number[]) {
         return new Promise((resolve, reject) => {
-            const worker = new Worker('./src/services/diceroll.worker.js', { workerData });
+            const worker = new Worker('./dist/services/diceroll.worker.js', { workerData });
             worker.on('message', resolve);
             worker.on('error', reject);
             worker.on('exit', (code) => {
